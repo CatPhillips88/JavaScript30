@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 
@@ -57,10 +59,41 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
-<script>
+  <script>
 
-</script>
+
+    // listening for an keydown - an API event. When key is pressed down it triggers
+
+    // keyCode can be found in the console under the object properties under Keyboard Event
+    // keyCode is associated with the key classes in the div tags
+
+     function playSound (e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+      if (!audio) return; // this stops any function running so any key that does not correspond to a sound won't play
+
+      audio.currentTime = 0; // allows the audio to play without a delay if button pressed after another
+
+      audio.play();
+
+      key.classList.add('playing') // adding class list - playing for css format to highlight key once pressed
+     }
+
+     function removeTransition(e) { 
+       if(e.propertyName !== 'transform') return; // removes the highlight around box shadow 
+       this.classList.remove('playing'); // it removes both the transform scale and color in playing classList at the transition time in key classList
+      }  
+
+      const keys = document.querySelectorAll('.key'); // want to look at all the keys within the div
+      keys.forEach(key => key.addEventListener('transitionend', removeTransition)); // loop over each key to find the event listener - transitionend then add function
+
+      window.addEventListener('keydown', playSound);
+    
+
+  </script>
 
 
 </body>
+
 </html>
