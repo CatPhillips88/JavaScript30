@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>JS + CSS Clock</title>
 </head>
+
 <body>
 
 
-    <div class="clock">
-      <div class="clock-face">
-        <div class="hand hour-hand"></div>
-        <div class="hand min-hand"></div>
-        <div class="hand second-hand"></div>
-      </div>
+  <div class="clock">
+    <div class="clock-face">
+      <div class="hand hour-hand"></div>
+      <div class="hand min-hand"></div>
+      <div class="hand second-hand"></div>
     </div>
+  </div>
 
 
   <style>
@@ -43,17 +45,18 @@
       position: relative;
       padding: 2rem;
       box-shadow:
-        0 0 0 4px rgba(0,0,0,0.1),
+        0 0 0 4px rgba(0, 0, 0, 0.1),
         inset 0 0 0 3px #EFEFEF,
         inset 0 0 10px black,
-        0 0 10px rgba(0,0,0,0.2);
+        0 0 10px rgba(0, 0, 0, 0.2);
     }
 
     .clock-face {
       position: relative;
       width: 100%;
       height: 100%;
-      transform: translateY(-3px); /* account for the height of the clock hands */
+      transform: translateY(-3px);
+      /* account for the height of the clock hands */
     }
 
     .hand {
@@ -67,38 +70,55 @@
       transition: all 0.5s;
       transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
-
   </style>
 
   <script>
 
-   const secondHand = document.querySelector('.second-hand'); // accessing the second hand html element in document
+    const secondHand = document.querySelector('.second-hand'); // accessing the second hand html element in document
 
-   const minuteHand = document.querySelector('.min-hand');
+    const minuteHand = document.querySelector('.min-hand');
+
+    const hourHand = document.querySelector('.hour-hand');
 
 
     function setDate() {
-     const now = new Date(); // Date() used to set the seconds 
-     
-     const seconds = now.getSeconds(); // getSeconds() returns the seconds in local time
-     
-     const secondsDegrees = ((seconds / 60) * 360) + 90;  // seconds attached to degrees to activate rotate transform
-     
-     secondHand.style.transform = `rotate(${secondsDegrees}deg)`; // now second hand should animate accessing the css properties
-   
-     console.log(seconds)
+      const now = new Date(); // Date() used to set the seconds 
 
-     const minute = now.getMinutes(); // accessing minute via method
+      const seconds = now.getSeconds(); // getSeconds() returns the seconds in local time
 
-     const minuteDegrees = ((minute / 60) * 350) + 90;
+      const secondsDegrees = ((seconds / 60) * 360) + 90;  // seconds attached to degrees to activate rotate transform
+
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`; // now second hand should animate accessing the css properties
 
 
 
-  
+      const minute = now.getMinutes(); // accessing minute via method
+
+      const minuteDegrees = ((minute / 60) * 350) + 90;
+
+      minuteHand.style.transform = `rotate(${minuteDegrees}deg)`;
+
+      const hour = now.getHours();
+
+      const hourDegrees = ((hour / 60) * 360) + 90;
+
+      hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+
+
+
+
+
+
+
+
+
+
+
     }
 
     setInterval(setDate, 1000); // to run function every second
 
   </script>
 </body>
+
 </html>
