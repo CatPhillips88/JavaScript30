@@ -106,25 +106,25 @@
     const alpha = people.sort((lastOne, nextOne) => {
       const [aLast, aFirst] = lastOne.split(', ');
       const [bLast, bFirst] = nextOne.split(', ');
-     return aLast > bLast ? 1 : -1;
+      return aLast > bLast ? 1 : -1;
     });
 
     console.log(alpha);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
-    
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogo stick'];
+
     // starts with a blank object then uses an if statement to test if there no object values present 
     // so any item added into the object from the array index should have an initial value of 0
     // any value added will then increment the index by 1
-    const transportation = data.reduce(function(obj, item) {
-       if(!obj[item]) {
-         obj[item] = 0;
-       }
-        obj[item]++;
-        return obj;
-    },{})
+    const transportation = data.reduce(function (obj, item) {
+      if (!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+    }, {})
 
     console.log(transportation);
 
