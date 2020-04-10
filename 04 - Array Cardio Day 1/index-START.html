@@ -43,7 +43,7 @@
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
     const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
-    
+
     console.table(fullNames)
 
     // Array.prototype.sort()
@@ -81,6 +81,23 @@
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+    // USE IN BROWSER FOR THIS EXERCISE!
+
+    // searched mw-category class within elements in browser
+    // which accessed the list of boulevards
+    // the list was then converted into array after querying the contents of the anchor tag
+    // this was subsequently mapped to return the new arrayas text content from a nodelist
+
+
+    let category = document.querySelector('.mw-category');
+
+    let links = Array.from(category.querySelectorAll('a'));
+
+    let de = links.map(link => link.textContent);
+
+    
+
 
 
     // 7. sort Exercise
