@@ -111,12 +111,14 @@
       font-size: 2em;
     }
 
-    /* nth-child selects a child of parent element, in this case the second child in the p tag*/
+    /* nth-child selects a child of parent element, in this case the second child in the middle p tag*/
     .panel p:nth-child(2) {
       font-size: 4em;
     }
 
     .panel.open {
+      flex: 5;
+      /* Flex-grow: increases the width of container by 5 of the panel when selected */
       font-size: 40px;
     }
   </style>
@@ -151,6 +153,29 @@
   </div>
 
   <script>
+    const panels = document.querySelectorAll('.panel');
+
+    function toggleOpen() {
+      this.classList.toggle('open');
+    }
+
+    // as there are multiple transitional content that are hidden using the transform property
+    // a toggle function will ensure that when the panel is targetted that it not only expands
+    // from the flex-grow property which was set to flex: 5 in css
+    // but it targets the flex children elements (p tags) hidden to transition to show.
+
+    function toggleActive(e) {
+      console.log(e.propertyName)
+      if (e.propertyName.includes('flex')) {
+        this.classList.toggle('open-active');
+      }
+    }
+
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+
+
 
   </script>
 
